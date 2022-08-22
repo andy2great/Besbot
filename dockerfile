@@ -1,4 +1,4 @@
-FROM --platform linux/arm/v7 denoland/deno:alpine
+FROM lukechannings/deno:v1.20.5
 
 EXPOSE 8000
 WORKDIR /app
