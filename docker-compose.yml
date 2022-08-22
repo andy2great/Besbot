@@ -3,3 +3,5 @@ services:
   besbot:
     restart: always
     image: ghcr.io/andy2great/besbot:latest
+    ports:
+      - 80:8000
