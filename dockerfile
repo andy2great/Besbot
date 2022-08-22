@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine
+FROM denoland/deno:ubuntu
 EXPOSE 8080
 WORKDIR /app
 USER deno
