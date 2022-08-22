@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine
+FROM --platform=linux/arm/v7 denoland/deno:alpine
 
 EXPOSE 8000
 WORKDIR /app
