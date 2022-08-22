@@ -1,0 +1,5 @@
+version: "3.9"
+services:
+  besbot:
+    restart: always
+    image: ghcr.io/andy2great/besbot:latest
