@@ -1,10 +1,14 @@
-FROM denoland/deno:ubuntu
-EXPOSE 8080
+FROM denoland/deno:alpine
+
+EXPOSE 8000
 WORKDIR /app
+
 USER deno
+
 COPY deps.ts .
 RUN deno cache deps.ts
+
 COPY . .
-RUN deno cache projects/app.ts
-RUN mkdir -p /var/tmp/log
-CMD ["run", "--allow-all", "projects/app.ts"]
+RUN deno cache ./projects/app.ts
+
+CMD ["run", "--allow-net", "./projects/app.ts"]
