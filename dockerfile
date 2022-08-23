@@ -1,4 +1,4 @@
-FROM LukeChannings/deno-arm64
+FROM lukechannings/deno:v1.24.3
 
 EXPOSE 8000
 WORKDIR /app
