@@ -11,4 +11,4 @@ RUN deno cache deps.ts
 COPY . .
 RUN deno cache ./projects/app.ts
 
-CMD ["run", "--allow-net", "./projects/app.ts"]
+CMD ["run", "--allow-all", "./projects/app.ts"]
