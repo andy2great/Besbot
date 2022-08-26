@@ -1,4 +1,4 @@
 fn main() {
-    println!("Hello, world Matthieu!");
+    println!("Hello, world Sam im on rust :3!");
 }
 
