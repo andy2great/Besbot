@@ -1,4 +1,4 @@
-FROM rust:1.49 as build
+FROM rust:1-alpine3.16 as build
 
 COPY . .
 
