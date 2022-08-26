@@ -1,14 +1,8 @@
-FROM denoland/deno:alpine
-
-EXPOSE 8000
-WORKDIR /app
-
-USER deno
-
-COPY deps.ts .
-RUN deno cache deps.ts
+FROM rust:1.49 as build
 
 COPY . .
-RUN deno cache ./projects/app.ts
 
-CMD ["run", "--allow-net", "./projects/app.ts"]
+RUN cargo build --release
+
+# Run the binary
+CMD ["./target/release/besbox"]
