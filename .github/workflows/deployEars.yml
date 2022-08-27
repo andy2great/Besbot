@@ -20,7 +20,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./Ears
           file: ./Ears/dockerfile
           push: true
           tags: ghcr.io/andy2great/besbox-ears:latest
