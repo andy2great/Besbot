@@ -1,8 +1,8 @@
 version: "3.9"
 services:
-  besbot:
+  besbox-ears:
     image: ghcr.io/andy2great/besbox-ears:latest
-  besbot:
+  besbox-version:
     image: ghcr.io/andy2great/besbox-version:latest
     ports:
       - 80:8000
