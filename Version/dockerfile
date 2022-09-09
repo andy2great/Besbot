@@ -4,6 +4,4 @@ COPY . .
 
 RUN cargo build --release --target-dir besbox
 
-RUN ls ./besbox/release
-
 CMD ["./besbox/release/besbox"]
