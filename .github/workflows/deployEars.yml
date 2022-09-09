@@ -24,4 +24,4 @@ jobs:
           file: ./Ears/dockerfile
           push: true
           tags: ghcr.io/andy2great/besbox-ears:latest
-          platforms: linux/arm32v7
+          platforms: arm32v7
