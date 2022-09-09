@@ -2,6 +2,6 @@ FROM arm32v7/rust:1-slim-buster as build
 
 COPY . .
 
-RUN cargo build --release --target-dir besbox
+RUN cargo install --path .
 
-CMD ["./besbox/release/besbox"]
+CMD ["besbox"]
