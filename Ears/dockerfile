@@ -2,6 +2,6 @@ FROM rust:1-alpine3.16 as build
 
 COPY . .
 
-RUN cargo build --release
+RUN cargo build --release --target-dir besbox
 
 CMD ["./target/release/besbox"]
