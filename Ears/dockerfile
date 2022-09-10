@@ -1,9 +1,0 @@
-FROM arm64v8/rust:1-buster as build
-
-COPY . .
-
-RUN cargo install --path .
-
-ENV VERSION=0.0.1
-
-CMD ["besbox"]
