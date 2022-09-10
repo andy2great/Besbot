@@ -1,4 +1,4 @@
-FROM arm64v8/rust:1-alpine3.16 as build
+FROM arm64v8/rust:1-buster as build
 
 COPY . .
 
