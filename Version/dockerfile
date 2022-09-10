@@ -1,8 +1,9 @@
-FROM arm32v7/rust:1.63 as runner
+FROM arm32v7/rust:1.63 as build
 
 COPY . .
+
+RUN cargo install --path .
+
 ENV VERSION=0.0.1
 
-RUN ls 
-
-CMD ["./target/release/besbox"]
+CMD ["besbox"]
