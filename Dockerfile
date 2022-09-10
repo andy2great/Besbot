@@ -2,7 +2,7 @@ FROM arm32v7/node:18-alpine3.15 as base
 
 WORKDIR /app/
 COPY package.json /app/
-RUN npm i --production
+RUN npm i --omit=dev
 
 FROM base as build
 
