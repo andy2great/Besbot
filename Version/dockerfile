@@ -3,6 +3,6 @@ FROM arm32v7/rust:1.63 as runner
 COPY . .
 ENV VERSION=0.0.1
 
-RUN ls
+RUN ls 
 
-CMD ["besbox"]
+CMD ["./target/release/besbox"]

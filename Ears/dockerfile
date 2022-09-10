@@ -5,4 +5,4 @@ ENV VERSION=0.0.1
 
 RUN ls
 
-CMD ["besbox"]
+CMD ["./target/release/besbox"]
