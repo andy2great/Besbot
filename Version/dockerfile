@@ -1,9 +1,31 @@
-FROM arm32v7/rust:1.63 as build
+FROM --platform=$BUILDPLATFORM rust:1.52-slim-buster AS base
 
-COPY . .
+WORKDIR /app
 
-RUN cargo install --path .
+RUN cargo init
+COPY ./Cargo.toml /app/Cargo.toml
+COPY ./Cargo.lock /app/Cargo.lock
+RUN mkdir -p /app/.cargo \
+  && cargo vendor > /app/.cargo/config
 
+FROM rust:1.52 AS build
+
+WORKDIR /app
 ENV VERSION=0.0.1
 
-CMD ["besbox"]
+COPY ./Cargo.toml /app/Cargo.toml
+COPY ./Cargo.lock /app/Cargo.lock
+COPY ./src /app/app
+COPY --from=server-sources /code/.cargo /code/.cargo
+COPY --from=server-sources /code/vendor /code/vendor
+
+RUN cargo build --release --offline
+
+FROM debian:buster-slim
+
+COPY --from=server-builder /code/target/release/besbox /usr/bin/besbox
+
+ENV PORT=80
+EXPOSE 80
+
+ENTRYPOINT [ "/usr/bin/besbox" ]
