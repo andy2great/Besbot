@@ -2,7 +2,7 @@ FROM arm32v7/node:18-buster-slim as base
 
 WORKDIR /app/
 COPY package.json /app/
-RUN npm i --omit=dev
+RUN npm i
 
 FROM base as build
 
