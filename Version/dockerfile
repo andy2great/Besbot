@@ -1,11 +1,11 @@
 FROM --platform=$BUILDPLATFORM rust:1-buster AS builder
 
 COPY . .
-RUN cargo build --release
+RUN cargo install
 
 FROM arm32v7/rust:1.63 as runner
 
-copy --from=builder ./target/release/besbox ./target/release/besbox
+copy --from=builder . .
 ENV VERSION=0.0.1
 
-CMD ["./target/release/besbox"]
+CMD ["besbox"]
