@@ -5,7 +5,7 @@ RUN cargo build --release
 
 FROM arm32v7/rust:1.63 as runner
 
-copy --from=builder . .
+copy --from=builder ./target/release/besbox ./target/release/besbox
 ENV VERSION=0.0.1
 
 CMD ["./target/release/besbox"]
