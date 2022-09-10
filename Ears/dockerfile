@@ -1,7 +1,7 @@
 FROM --platform=$BUILDPLATFORM rust:1-buster AS builder
 
 COPY . .
-RUN cargo install
+RUN cargo install --path .
 
 FROM arm32v7/rust:1.63 as runner
 
