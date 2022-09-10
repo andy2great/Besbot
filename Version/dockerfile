@@ -1,6 +1,8 @@
 FROM arm32v7/rust:1.63 as runner
 
-copy . .
+COPY . .
 ENV VERSION=0.0.1
+
+RUN ls
 
 CMD ["besbox"]
