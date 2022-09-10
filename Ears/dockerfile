@@ -1,8 +1,11 @@
-FROM arm32v7/rust:1.63 as build
+FROM --platform=$BUILDPLATFORM rust:1-alpine3.16 AS builder
 
 COPY . .
+RUN cargo install --path .
 
+FROM arm32v7/rust:1.63 as runner
+
+copy --from=builder . .
 ENV VERSION=0.0.1
-RUN cargo build --release 
 
-CMD ["./target/release/besbox"]
+CMD ["besbox"]
