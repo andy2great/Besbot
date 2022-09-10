@@ -4,4 +4,6 @@ COPY . .
 
 RUN cargo install --path .
 
+ENV VERSION=0.0.1
+
 CMD ["besbox"]
