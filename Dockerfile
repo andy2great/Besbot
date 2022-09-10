@@ -2,7 +2,7 @@ FROM node:16-alpine as base
 
 WORKDIR /app/
 COPY package.json /app/
-RUN npm i
+RUN npm i --production
 
 FROM base as build
 
