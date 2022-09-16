@@ -5,4 +5,4 @@ services:
   besbox-version:
     image: ghcr.io/andy2great/besbox-version:latest
     ports:
-      - 80:8000
+      - 80:8080
