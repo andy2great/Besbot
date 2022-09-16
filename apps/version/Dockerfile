@@ -7,7 +7,7 @@ RUN npm install --omit=dev
 
 FROM base as build
 
-ENV VERSION=1.0.1
+ENV VERSION=1.1.0
 
 COPY ../../dist/apps/version .
 EXPOSE 8080

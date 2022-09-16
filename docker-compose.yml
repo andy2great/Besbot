@@ -1,7 +1,9 @@
 version: "3.9"
 services:
-  # besbox-ears:
-  #   image: ghcr.io/andy2great/besbox-ears:latest
+  besbox-mouth:
+    image: ghcr.io/andy2great/besbox-ears:latest
+  besbox-ears:
+    image: ghcr.io/andy2great/besbox-ears:latest
   besbox-version:
     image: ghcr.io/andy2great/besbox-version:latest
     ports:
