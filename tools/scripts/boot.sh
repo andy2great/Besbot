@@ -3,7 +3,6 @@
 echo "1" > 1.txt
 cd /home/ubuntu/Besbot/tools/scripts/
 echo "2" > 1.txt
-git pull
 echo "3" > 1.txt
 docker image prune -a -f
 echo "4" > 1.txt
