@@ -2,14 +2,12 @@ FROM arm32v7/node:18-alpine3.15 as base
 
 WORKDIR /app/
 
-COPY ../../package.json /app/
+COPY package.json /app/
 RUN npm install --omit=dev
 
 FROM base as build
 
-ENV VERSION=1.0.1
-
-COPY ../../dist/apps/mouth .
+COPY ./dist/apps/mouth .
 EXPOSE 8080
 
 CMD node ./main.js
