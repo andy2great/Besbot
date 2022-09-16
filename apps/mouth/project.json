@@ -1,0 +1,44 @@
+{
+  "root": "apps/mouth",
+  "sourceRoot": "apps/mouth/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/mouth",
+        "main": "apps/mouth/src/main.ts",
+        "tsConfig": "apps/mouth/tsconfig.app.json",
+        "assets": ["apps/mouth/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/mouth/src/environments/environment.ts",
+              "with": "apps/mouth/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "mouth:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mouth/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

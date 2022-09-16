@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "ears": "apps/ears",
+    "mouth": "apps/mouth",
     "version": "apps/version"
   }
 }

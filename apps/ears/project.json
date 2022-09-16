@@ -1,0 +1,44 @@
+{
+  "root": "apps/ears",
+  "sourceRoot": "apps/ears/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ears",
+        "main": "apps/ears/src/main.ts",
+        "tsConfig": "apps/ears/tsconfig.app.json",
+        "assets": ["apps/ears/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/ears/src/environments/environment.ts",
+              "with": "apps/ears/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "ears:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ears/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

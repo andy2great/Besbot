@@ -49,7 +49,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const express = __webpack_require__("express");
 const app = express();
 app.get('/api', (req, res) => {
-    res.send(process.env['VERSION'] || ':))');
+    res.send(process.env['VERSION'] || ':)');
 });
 const port = process.env.port || 8080;
 const server = app.listen(port, () => {
