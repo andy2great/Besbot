@@ -39,11 +39,9 @@ jobs:
           affected_app_var="${affected_app_var//$'\r'/'%0D'}"
           echo "::set-output name=affected_app::$affected_app_var"
 
-      - run: echo "${{ steps.check_nx_apps.outputs.affected_app }}"
-
       - name: check app has changed
         if: false == contains(steps.check_nx_apps.outputs.affected_app, 'version')
-        run: exit 0
+        run: exit 1
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2

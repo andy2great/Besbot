@@ -32,11 +32,16 @@ jobs:
         run: npm i --ignore-scripts
 
       - id: check_nx_apps
-        run: echo "::set-output name=affected_app::$(npx nx affected:apps --target=main --base=$BEFORE_SHA)"
+        run: | 
+          affected_app_var=$(npx nx affected:apps --target=main --base=$BEFORE_SHA)
+          affected_app_var="${affected_app_var//'%'/'%25'}"
+          affected_app_var="${affected_app_var//$'\n'/'%0A'}"
+          affected_app_var="${affected_app_var//$'\r'/'%0D'}"
+          echo "::set-output name=affected_app::$affected_app_var"
   
       - name: check app has changed
         if: false == contains(steps.check_nx_apps.outputs.affected_app, 'mouth')
-        run: exit 0
+        run: exit 1
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
