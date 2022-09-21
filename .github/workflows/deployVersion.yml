@@ -18,7 +18,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - id: check_nx_apps
-        uses: ignition-is-go/action-nx-affected-apps
+        uses: ignition-is-go/action-nx-affected-apps@v1
         with:
           head: 'origin/main'
           base: github.sha
