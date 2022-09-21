@@ -28,7 +28,7 @@ jobs:
         run: npm i --ignore-scripts
 
       - id: check_nx_apps
-        run: npx nx affected --target=apps --base=main
+        run: npx nx affected:apps --target=main --base=main
   
       - name: check app has changed
         if: contains(steps.check_nx_apps.affected_apps, 'version')
