@@ -5,7 +5,7 @@ WORKDIR /app/
 EXPOSE 8080
 ENV VERSION=1.2.0
 
-COPY ./node_modules /app/node_modules/
+COPY ./node_modules ./node_modules
 COPY ./dist/apps/version .
 
 
