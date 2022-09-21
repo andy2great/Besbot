@@ -31,7 +31,6 @@ jobs:
         run: npx nx affected:apps --target=main --base=main
   
       - name: check app has changed
-        if: contains(steps.check_nx_apps.affected_apps, 'version')
         run: exit 1
 
       - name: Set up QEMU
