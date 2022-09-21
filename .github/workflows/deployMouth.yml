@@ -17,8 +17,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - uses: nrwl/nx-set-shas@v3
-
       - id: check_nx_apps
         run: npx nx affected --target=apps --base=main
   
