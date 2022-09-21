@@ -33,10 +33,13 @@ jobs:
 
       - id: check_nx_apps
         run: | 
-          echo "::set-output name=affected_app::$(npx nx affected:apps --target=main --base=$BEFORE_SHA)"
-          echo "::set-output name=yo::red"
+          affected_app_var=$(npx nx affected:apps --target=main --base=$BEFORE_SHA)
+          affected_app_var="${affected_app_var//'%'/'%25'}"
+          affected_app_var="${affected_app_var//$'\n'/'%0A'}"
+          affected_app_var="${affected_app_var//$'\r'/'%0D'}"
+          echo "::set-output name=affected_app::$affected_app_var"
 
-      - run: echo "${{ steps.check_nx_apps.outputs.affected_app }}${{ steps.check_nx_apps.outputs.yo }}"
+      - run: echo "${{ steps.check_nx_apps.outputs.affected_app }}"
 
       - name: check app has changed
         if: false == contains(steps.check_nx_apps.outputs.affected_app, 'version')
