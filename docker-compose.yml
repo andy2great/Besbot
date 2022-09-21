@@ -2,9 +2,20 @@ version: "3.9"
 services:
   besbox-mouth:
     image: ghcr.io/andy2great/besbox-ears:latest
+    build:
+      context: ./
+      dockerfile: apps/mouth/Dockerfile
+
   besbox-ears:
     image: ghcr.io/andy2great/besbox-ears:latest
+    build:
+      context: ./
+      dockerfile: apps/ears/Dockerfile
+
   besbox-version:
     image: ghcr.io/andy2great/besbox-version:latest
+    build:
+      context: ./
+      dockerfile: apps/version/Dockerfile
     ports:
       - 80:8080
