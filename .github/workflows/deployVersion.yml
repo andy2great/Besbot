@@ -33,7 +33,9 @@ jobs:
 
       - id: check_nx_apps
         run: echo "::set-output name=affected_app::$(npx nx affected:apps --target=main --base=$BEFORE_SHA)"
-  
+
+      - run: echo steps.check_nx_apps.outputs.affected_app
+
       - name: check app has changed
         if: false == contains(steps.check_nx_apps.outputs.affected_app, 'version')
         run: exit 1
