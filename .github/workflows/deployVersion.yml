@@ -32,7 +32,7 @@ jobs:
         run: npm i --ignore-scripts
 
       - id: check_nx_apps
-        run: echo "::set-output name=affected_app::$(npx nx affected:apps --target=main --base=$BEFORE_SHA)"
+        run: echo "::set-output name=affected_app::$(npx nx affected:apps --target=main --base=$BEFORE_SHA | echo)"
 
       - run: echo ${{steps.check_nx_apps.outputs.affected_app}}
 
