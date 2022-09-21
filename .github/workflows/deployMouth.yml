@@ -17,11 +17,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - uses: nrwl/nx-set-shas@v3
+
       - id: check_nx_apps
-        uses: ignition-is-go/action-nx-affected-apps
-        with:
-          head: 'origin/main'
-          base: github.sha
+        run: npx nx affected --target=apps --base=main
   
       - name: check app has changed
         if: contains(steps.check_nx_apps.affected_apps, 'version')
