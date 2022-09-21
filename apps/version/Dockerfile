@@ -6,7 +6,7 @@ COPY package.json /app/
 RUN npm install --omit=dev
 
 EXPOSE 8080
-ENV VERSION=1.1.2
+ENV VERSION=1.1.3
 
 COPY ./dist/apps/version .
 
