@@ -2,12 +2,14 @@ version: "3.9"
 services:
   besbox-mouth:
     image: ghcr.io/andy2great/besbox-ears:latest
+    privileged: true
     build:
       context: ./
       dockerfile: apps/mouth/Dockerfile
 
   besbox-ears:
     image: ghcr.io/andy2great/besbox-ears:latest
+    privileged: true
     build:
       context: ./
       dockerfile: apps/ears/Dockerfile
