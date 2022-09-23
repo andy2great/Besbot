@@ -1,6 +1,6 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-console.log('Hello World!');
+console.log('Hello World! :D !');
 
 var __webpack_export_target__ = exports;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];

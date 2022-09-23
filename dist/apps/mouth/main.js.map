@@ -1,1 +1,1 @@
-{"version":3,"file":"main.js","mappings":";;AAAA,OAAO,CAAC,GAAG,CAAC,cAAc,CAAC,CAAC","sources":["webpack://besbot/./apps/mouth/src/main.ts"],"sourcesContent":["console.log('Hello World!');\r\n"],"names":[],"sourceRoot":""}
+{"version":3,"file":"main.js","mappings":";;AAAA,OAAO,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC","sources":["webpack://besbot/./apps/mouth/src/main.ts"],"sourcesContent":["console.log('Hello World! :D');\n"],"names":[],"sourceRoot":""}
