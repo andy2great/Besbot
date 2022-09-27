@@ -16,7 +16,7 @@ services:
       context: ./
       dockerfile: apps/ears/Dockerfile
     ports:
-      - 80:8081
+      - 8081:8081
     networks:
       - besbox_network
 
