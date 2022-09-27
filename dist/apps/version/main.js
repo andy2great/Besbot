@@ -41,10 +41,6 @@ var __webpack_exports__ = {};
 (() => {
 var exports = __webpack_exports__;
 
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const express = __webpack_require__("express");
 const app = express();

@@ -6,6 +6,8 @@ services:
     build:
       context: ./
       dockerfile: apps/mouth/Dockerfile
+    networks:
+      - besbox_network
 
   besbox-ears:
     image: ghcr.io/andy2great/besbox-ears:latest
@@ -13,6 +15,10 @@ services:
     build:
       context: ./
       dockerfile: apps/ears/Dockerfile
+    ports:
+      - 80:8081
+    networks:
+      - besbox_network
 
   besbox-version:
     image: ghcr.io/andy2great/besbox-version:latest
@@ -21,3 +27,10 @@ services:
       dockerfile: apps/version/Dockerfile
     ports:
       - 80:8080
+    networks:
+      - besbox_network
+
+networks:
+  besbox_network:
+    name: besbox_network
+    driver: bridge
