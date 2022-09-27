@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   besbox-mouth:
-    image: ghcr.io/andy2great/besbox-ears:latest
+    image: ghcr.io/andy2great/besbox-mouth:latest
     privileged: true
     build:
       context: ./
