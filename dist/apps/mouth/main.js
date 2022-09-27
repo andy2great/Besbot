@@ -53,11 +53,6 @@ const say = __webpack_require__("say");
 const express = __webpack_require__("express");
 const app = express();
 app.use(express.json());
-/**
- * {
- *    text: string
- * }
- */
 app.post('/', (req, res) => {
     say.speak(req.body.text);
     res.send(null);
@@ -67,6 +62,7 @@ app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/`);
 });
 say.getInstalledVoices(console.log);
+console.log('ok');
 
 })();
 

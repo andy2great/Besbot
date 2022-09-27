@@ -5,11 +5,6 @@ const app = express();
 
 app.use(express.json());
 
-/**
- * {
- *    text: string
- * }
- */
 app.post('/', (req, res) => {
   say.speak(req.body.text)
   res.send(null)
@@ -21,3 +16,4 @@ app.listen(port, () => {
 });
 
 say.getInstalledVoices(console.log)
+console.log('ok')
