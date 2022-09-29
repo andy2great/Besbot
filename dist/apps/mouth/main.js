@@ -2,6 +2,35 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./libs/helpers/src/index.ts":
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const tslib_1 = __webpack_require__("tslib");
+tslib_1.__exportStar(__webpack_require__("./libs/helpers/src/lib/host-communication.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./libs/helpers/src/lib/host-communication.ts":
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.speak = void 0;
+const fs = __webpack_require__("fs");
+const pipePath = "/hostpipe/mypipe";
+function speak(message) {
+    const wstream = fs.createWriteStream(pipePath);
+    wstream.write(`echo "${message}" | festival --tts`);
+    wstream.close();
+}
+exports.speak = speak;
+
+
+/***/ }),
+
 /***/ "express":
 /***/ ((module) => {
 
@@ -9,10 +38,17 @@ module.exports = require("express");
 
 /***/ }),
 
-/***/ "say":
+/***/ "tslib":
 /***/ ((module) => {
 
-module.exports = require("say");
+module.exports = require("tslib");
+
+/***/ }),
+
+/***/ "fs":
+/***/ ((module) => {
+
+module.exports = require("fs");
 
 /***/ })
 
@@ -49,13 +85,13 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const say = __webpack_require__("say");
 const express = __webpack_require__("express");
+const helpers_1 = __webpack_require__("./libs/helpers/src/index.ts");
 const app = express();
 app.use(express.json());
 app.post('/', (req, res) => {
-    say.speak(req.body.text);
-    console.log(`received ${req.body.text}`);
+    const text = req.body.text.toString();
+    (0, helpers_1.speak)(text);
     res.send(null);
 });
 const port = process.env.port || 8081;

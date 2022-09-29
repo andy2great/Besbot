@@ -1,4 +1,3 @@
-import say = require('say');
 import * as express from 'express';
 import { speak } from '@besbot/helpers';
 
