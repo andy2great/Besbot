@@ -54,7 +54,7 @@ const express = __webpack_require__("express");
 const app = express();
 app.use(express.json());
 app.get('/', (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    const result = yield fetch('http://besbox-mouth/', {
+    const result = yield fetch('http://besbox-mouth:8081/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

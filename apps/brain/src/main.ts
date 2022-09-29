@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-  const result = await fetch('http://besbox-mouth/', {
+  const result = await fetch('http://besbox-mouth:8081/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
