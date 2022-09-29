@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "brain": "apps/brain",
+    "bridge": "apps/bridge",
     "ears": "apps/ears",
     "helpers": "libs/helpers",
     "mouth": "apps/mouth",

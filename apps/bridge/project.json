@@ -1,0 +1,44 @@
+{
+  "root": "apps/bridge",
+  "sourceRoot": "apps/bridge/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/bridge",
+        "main": "apps/bridge/src/main.ts",
+        "tsConfig": "apps/bridge/tsconfig.app.json",
+        "assets": ["apps/bridge/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/bridge/src/environments/environment.ts",
+              "with": "apps/bridge/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "bridge:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bridge/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

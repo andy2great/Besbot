@@ -1,0 +1,53 @@
+name: besbox-brain
+on:
+  push:
+    branches:
+      - 'main'
+env:
+  BEFORE_SHA: ${{ github.event.before }}
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Build:checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: 'login'
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
+        run: npm i --ignore-scripts
+
+      - id: check_nx_apps
+        run: | 
+          affected_app_var=$(npx nx affected:apps --target=main --base=$BEFORE_SHA)
+          affected_app_var="${affected_app_var//'%'/'%25'}"
+          affected_app_var="${affected_app_var//$'\n'/'%0A'}"
+          affected_app_var="${affected_app_var//$'\r'/'%0D'}"
+          echo "::set-output name=affected_app::$affected_app_var"
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Build and push
+        if: contains(steps.check_nx_apps.outputs.affected_app, 'bridge')
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./apps/bridge/Dockerfile
+          push: true
+          tags: ghcr.io/andy2great/besbox-bridge:latest
+          platforms: linux/amd64
