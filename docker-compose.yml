@@ -19,8 +19,6 @@ services:
     build:
       context: ./
       dockerfile: apps/mouth/Dockerfile
-    ports:
-      - 8081:8081
     networks:
       - besbox_network
 
