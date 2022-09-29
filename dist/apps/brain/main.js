@@ -2,6 +2,22 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./apps/config.ts":
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AppHosts = void 0;
+exports.AppHosts = {
+    brain: 'besbox-brain',
+    ears: 'besbox-ears',
+    mouth: 'besbox-mouth',
+    version: 'besbox-version',
+};
+
+
+/***/ }),
+
 /***/ "express":
 /***/ ((module) => {
 
@@ -51,10 +67,11 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const tslib_1 = __webpack_require__("tslib");
 const express = __webpack_require__("express");
+const config_1 = __webpack_require__("./apps/config.ts");
 const app = express();
 app.use(express.json());
 app.get('/', (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    const result = yield fetch('http://besbox-mouth:8081/', {
+    const result = yield fetch(`http://${config_1.AppHosts.mouth}/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
