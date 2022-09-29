@@ -2,6 +2,8 @@ FROM arm32v7/node:18-alpine3.15 as base
 
 WORKDIR /app/
 
+EXPOSE 8080
+
 COPY ./node_modules ./node_modules
 COPY ./dist/apps/brain .
 
