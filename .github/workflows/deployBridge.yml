@@ -1,4 +1,4 @@
-name: besbox-brain
+name: besbox-bridge
 on:
   push:
     branches:
