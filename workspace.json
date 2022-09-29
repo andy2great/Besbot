@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "brain": "apps/brain",
     "ears": "apps/ears",
     "helpers": "libs/helpers",
     "mouth": "apps/mouth",

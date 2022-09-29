@@ -1,0 +1,44 @@
+{
+  "root": "apps/brain",
+  "sourceRoot": "apps/brain/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/brain",
+        "main": "apps/brain/src/main.ts",
+        "tsConfig": "apps/brain/tsconfig.app.json",
+        "assets": ["apps/brain/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/brain/src/environments/environment.ts",
+              "with": "apps/brain/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "brain:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/brain/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

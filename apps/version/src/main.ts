@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   res.send(process.env['VERSION'] || ':)');
 });
 
-const port = process.env.port || 8080;
+const port = process.env.port || 80;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/`);
 });

@@ -7,6 +7,13 @@
 
 module.exports = require("express");
 
+/***/ }),
+
+/***/ "tslib":
+/***/ ((module) => {
+
+module.exports = require("tslib");
+
 /***/ })
 
 /******/ 	});
@@ -42,16 +49,24 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+const tslib_1 = __webpack_require__("tslib");
 const express = __webpack_require__("express");
 const app = express();
-app.get('/', (req, res) => {
-    res.send(process.env['VERSION'] || ':)');
-});
-const port = process.env.port || 80;
-const server = app.listen(port, () => {
+app.use(express.json());
+app.get('/', (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+    const result = yield fetch('http://besbox-mouth/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text: 'Hey this is a2g' })
+    });
+    res.send(result);
+}));
+const port = process.env.port || 8080;
+app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/`);
 });
-server.on('error', console.error);
 
 })();
 
