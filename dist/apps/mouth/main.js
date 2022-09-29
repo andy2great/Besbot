@@ -20,7 +20,7 @@ tslib_1.__exportStar(__webpack_require__("./libs/helpers/src/lib/host-communicat
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.speak = void 0;
 const fs = __webpack_require__("fs");
-const pipePath = "/hostpipe/mypipe";
+const pipePath = "/hostpipe/pipe";
 function speak(message) {
     const wstream = fs.createWriteStream(pipePath);
     wstream.write(`echo "${message}" | festival --tts`);

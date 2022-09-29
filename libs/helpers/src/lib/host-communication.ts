@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-const pipePath = "/hostpipe/mypipe";
+const pipePath = "/hostpipe/pipe";
 
 export function speak(message: string): void {
   const wstream = fs.createWriteStream(pipePath)
