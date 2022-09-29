@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "ears": "apps/ears",
+    "helpers": "libs/helpers",
     "mouth": "apps/mouth",
     "version": "apps/version"
   }

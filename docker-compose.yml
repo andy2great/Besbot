@@ -3,6 +3,8 @@ services:
   besbox-mouth:
     image: ghcr.io/andy2great/besbox-mouth:latest
     privileged: true
+    volumes:
+      - /home/ubuntu/pipes:/hostpipe
     build:
       context: ./
       dockerfile: apps/mouth/Dockerfile

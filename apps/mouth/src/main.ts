@@ -1,13 +1,14 @@
 import say = require('say');
 import * as express from 'express';
+import { speak } from '@besbot/helpers';
 
 const app = express();
 
 app.use(express.json());
 
 app.post('/', (req, res) => {
-  say.speak(req.body.text);
-  console.log(`received ${req.body.text}`)
+  const text = req.body.text.toString();
+  speak(text)
   res.send(null);
 });
 
