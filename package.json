@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "express": "4.17.2",
+    "mqtt": "^4.3.7",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

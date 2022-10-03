@@ -6,6 +6,7 @@
     "ears": "apps/ears",
     "helpers": "libs/helpers",
     "mouth": "apps/mouth",
+    "pub-sub": "apps/pub-sub",
     "version": "apps/version"
   }
 }

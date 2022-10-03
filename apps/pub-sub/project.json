@@ -1,0 +1,44 @@
+{
+  "root": "apps/pub-sub",
+  "sourceRoot": "apps/pub-sub/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/pub-sub",
+        "main": "apps/pub-sub/src/main.ts",
+        "tsConfig": "apps/pub-sub/tsconfig.app.json",
+        "assets": ["apps/pub-sub/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/pub-sub/src/environments/environment.ts",
+              "with": "apps/pub-sub/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "pub-sub:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/pub-sub/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
