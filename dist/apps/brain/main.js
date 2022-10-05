@@ -2,6 +2,38 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./apps/config.ts":
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AppConfigs = void 0;
+exports.AppConfigs = {
+    brain: {
+        name: process.env.host_brain || 'localhost',
+        port: process.env.host_brain ? 80 : 8080
+    },
+    ears: {
+        name: process.env.host_ears || 'localhost',
+        port: process.env.host_ears ? 80 : 8082
+    },
+    mouth: {
+        name: process.env.host_mouth || 'localhost',
+        port: process.env.host_mouth ? 80 : 8081
+    },
+    version: {
+        name: process.env.host_version || 'localhost',
+        port: process.env.host_version ? 80 : 80
+    },
+    bridge: {
+        name: process.env.host_bridge || 'localhost',
+        port: process.env.host_bridge ? 80 : 8083
+    }
+};
+
+
+/***/ }),
+
 /***/ "./libs/helpers/src/index.ts":
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -209,21 +241,18 @@ var __webpack_exports__ = {};
 (() => {
 var exports = __webpack_exports__;
 
-var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const helpers_1 = __webpack_require__("./libs/helpers/src/index.ts");
 const express = __webpack_require__("express");
+const config_1 = __webpack_require__("./apps/config.ts");
 helpers_1.MQTTClient.getInstance().connect('mqtt://localhost:1883');
 const app = express();
 app.use(express.json());
-const DEFAULT_PORT = 8080;
-const port = (_a = process.env.port) !== null && _a !== void 0 ? _a : DEFAULT_PORT;
-app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}/`);
+app.listen(config_1.AppConfigs.brain.port, () => {
+    console.log(`Listening at http://localhost:${config_1.AppConfigs.brain.port}/`);
 });
 helpers_1.MQTTClient.getInstance().listen('beslogic/mouth/say', message => {
-    console.log('received mqtt message');
-    helpers_1.TCPClient.getInstance().send(8081, 'localhost', {
+    helpers_1.TCPClient.getInstance().send(config_1.AppConfigs.mouth.port, config_1.AppConfigs.mouth.name, {
         destination: 'say',
         message,
     });

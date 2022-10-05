@@ -1,22 +1,19 @@
 import { MQTTClient, TCPClient } from '@besbot/helpers'
 import * as express from 'express'
 
-import { AppHosts } from '../../config'
+import { AppConfigs } from '../../config'
 
 MQTTClient.getInstance().connect('mqtt://localhost:1883')
 const app = express()
 
 app.use(express.json())
 
-const DEFAULT_PORT = 8080
-const port = process.env.port ?? DEFAULT_PORT
-app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/`)
+app.listen(AppConfigs.brain.port, () => {
+  console.log(`Listening at http://localhost:${AppConfigs.brain.port}/`)
 })
 
 MQTTClient.getInstance().listen('beslogic/mouth/say', message => {
-  console.log('received mqtt message')
-  TCPClient.getInstance().send(8081, 'localhost', {
+  TCPClient.getInstance().send(AppConfigs.mouth.port, AppConfigs.mouth.name, {
     destination: 'say',
     message,
   })

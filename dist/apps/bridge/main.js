@@ -7,14 +7,62 @@
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const express = __webpack_require__("express");
 const helpers_1 = __webpack_require__("./libs/helpers/src/index.ts");
+const express = __webpack_require__("express");
+const mqtt_config_1 = __webpack_require__("./apps/mqtt-config.ts");
 const router = express.Router();
 router.get('*', (req, res) => {
-    helpers_1.MQTTClient.getInstance().notify('beslogic/mouth/say', req.path.toString());
+    helpers_1.MQTTClient.getInstance().notify(mqtt_config_1.MqttTopics.ears.say, req.path.toString());
     res.send({ message: 'Welcome to bridge!' });
 });
 exports["default"] = router;
+
+
+/***/ }),
+
+/***/ "./apps/config.ts":
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AppConfigs = void 0;
+exports.AppConfigs = {
+    brain: {
+        name: process.env.host_brain || 'localhost',
+        port: process.env.host_brain ? 80 : 8080
+    },
+    ears: {
+        name: process.env.host_ears || 'localhost',
+        port: process.env.host_ears ? 80 : 8082
+    },
+    mouth: {
+        name: process.env.host_mouth || 'localhost',
+        port: process.env.host_mouth ? 80 : 8081
+    },
+    version: {
+        name: process.env.host_version || 'localhost',
+        port: process.env.host_version ? 80 : 80
+    },
+    bridge: {
+        name: process.env.host_bridge || 'localhost',
+        port: process.env.host_bridge ? 80 : 8083
+    }
+};
+
+
+/***/ }),
+
+/***/ "./apps/mqtt-config.ts":
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.MqttTopics = void 0;
+exports.MqttTopics = {
+    ears: {
+        say: 'beslogic/ears/say'
+    },
+};
 
 
 /***/ }),
@@ -227,20 +275,16 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const express = __webpack_require__("express");
 const helpers_1 = __webpack_require__("./libs/helpers/src/index.ts");
+const express = __webpack_require__("express");
+const config_1 = __webpack_require__("./apps/config.ts");
 const question_1 = __webpack_require__("./apps/bridge/src/app/routers/question.ts");
 helpers_1.MQTTClient.getInstance().connect('mqtt://localhost:1883', 'beslogic', 'Beslogic#123456');
 const app = express();
 app.use(express.json());
 app.use(question_1.default);
-const port = process.env.port || 8083;
-const server = app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}/`);
-});
-server.on('error', console.error);
-helpers_1.MQTTClient.getInstance().listen('presence', (message) => {
-    console.log(message);
+app.listen(config_1.AppConfigs.bridge.port, () => {
+    console.log(`Listening at http://localhost:${config_1.AppConfigs.bridge.port}/`);
 });
 
 })();
