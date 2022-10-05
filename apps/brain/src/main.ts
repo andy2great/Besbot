@@ -3,7 +3,7 @@ import * as express from 'express'
 
 import { AppConfigs } from '../../config'
 
-MQTTClient.getInstance().connect('mqtt://localhost:1883')
+MQTTClient.getInstance().connect('mqtt://mqtt.genparker.com:1883')
 const app = express()
 
 app.use(express.json())

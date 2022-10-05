@@ -55,8 +55,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.speak = void 0;
 const fs = __webpack_require__("node:fs");
 const speak = (message) => {
+    console.log('message', message);
     if (fs.existsSync('/hostpipe/pipe')) {
-        console.log('test');
         const wstream = fs.createWriteStream('/hostpipe/pipe');
         wstream.write(`echo "${message}" | festival --tts`);
         wstream.close();
@@ -245,7 +245,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const helpers_1 = __webpack_require__("./libs/helpers/src/index.ts");
 const express = __webpack_require__("express");
 const config_1 = __webpack_require__("./apps/config.ts");
-helpers_1.MQTTClient.getInstance().connect('mqtt://localhost:1883');
+helpers_1.MQTTClient.getInstance().connect('mqtt://mqtt.genparker.com:1883');
 const app = express();
 app.use(express.json());
 app.listen(config_1.AppConfigs.brain.port, () => {

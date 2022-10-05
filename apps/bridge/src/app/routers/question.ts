@@ -1,12 +1,10 @@
 import { MQTTClient } from '@besbot/helpers'
 import * as express from 'express'
 
-import { MqttTopics } from '../../../../mqtt-config'
-
 const router = express.Router()
 
 router.get('*', (req, res) => {
-  MQTTClient.getInstance().notify(MqttTopics.ears.say, req.path.toString())
+  MQTTClient.getInstance().notify('beslogic/mouth/say', req.query.text?.toString() ?? 'Nothing found')
   res.send({ message: 'Welcome to bridge!' })
 })
 

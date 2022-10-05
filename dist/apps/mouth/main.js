@@ -23,8 +23,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.speak = void 0;
 const fs = __webpack_require__("node:fs");
 const speak = (message) => {
+    console.log('message', message);
     if (fs.existsSync('/hostpipe/pipe')) {
-        console.log('test');
         const wstream = fs.createWriteStream('/hostpipe/pipe');
         wstream.write(`echo "${message}" | festival --tts`);
         wstream.close();
