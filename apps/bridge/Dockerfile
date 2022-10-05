@@ -2,6 +2,8 @@ FROM node:18-alpine3.15 as base
 
 WORKDIR /app/
 
+ENV host_brain='besbox-brain'
+
 EXPOSE 80
 ENV port=80
 

@@ -1,8 +1,12 @@
-import * as fs from 'fs';
-const pipePath = "/hostpipe/pipe";
+import * as fs from 'node:fs'
 
-export function speak(message: string): void {
-  const wstream = fs.createWriteStream(pipePath)
-  wstream.write(`echo "${message}" | festival --tts`)
-  wstream.close()
+export const speak = (message: string): void => {
+  if (fs.existsSync('/hostpipe/pipe')) {
+    console.log('test')
+    const wstream = fs.createWriteStream('/hostpipe/pipe')
+    wstream.write(`echo "${message}" | festival --tts`)
+    wstream.close()
+  } else {
+    console.log('file does not exist')
+  }
 }

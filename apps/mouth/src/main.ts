@@ -1,17 +1,11 @@
-import * as express from 'express';
-import { speak } from '@besbot/helpers';
+import { speak, TCPClient } from '@besbot/helpers'
 
-const app = express();
+const DEFAULT_PORT = 8081
+const port = Number(process.env.port) || DEFAULT_PORT
 
-app.use(express.json());
-
-app.post('/', (req, res) => {
-  const text = req.body.text.toString();
-  speak(text)
-  res.send(null);
-});
-
-const port = process.env.port || 8081;
-app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/`);
-});
+const tcpClient = TCPClient.getInstance()
+tcpClient.connect(port)
+tcpClient.listen({
+  destination: 'say',
+  callback: speak,
+})

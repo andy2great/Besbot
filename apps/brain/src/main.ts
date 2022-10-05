@@ -1,23 +1,23 @@
-import * as express from 'express';
-import { AppHosts } from '../../config';
+import { MQTTClient, TCPClient } from '@besbot/helpers'
+import * as express from 'express'
 
-const app = express();
+import { AppHosts } from '../../config'
 
-app.use(express.json());
+MQTTClient.getInstance().connect('mqtt://localhost:1883')
+const app = express()
 
-app.get('/', async (req, res) => {
-  const result = await fetch(`http://${AppHosts.mouth}/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ text: 'Hey this is a2g' })
-  });
+app.use(express.json())
 
-  res.send(result);
-});
-
-const port = process.env.port || 8080;
+const DEFAULT_PORT = 8080
+const port = process.env.port ?? DEFAULT_PORT
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/`);
-});
+  console.log(`Listening at http://localhost:${port}/`)
+})
+
+MQTTClient.getInstance().listen('beslogic/mouth/say', message => {
+  console.log('received mqtt message')
+  TCPClient.getInstance().send(8081, 'localhost', {
+    destination: 'say',
+    message,
+  })
+})

@@ -3,6 +3,12 @@
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "meganrogge.template-string-converter",
+    "mikestead.dotenv",
+    "ms-vscode.vscode-typescript-next",
+    "pkief.material-icon-theme",
+    "davidanson.vscode-markdownlint",
+    "eamodio.gitlens",
   ]
 }

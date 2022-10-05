@@ -4,6 +4,7 @@ WORKDIR /app/
 
 EXPOSE 80
 ENV port=80
+ENV host_brain='besbox-brain'
 
 COPY ./node_modules ./node_modules
 COPY ./dist/apps/mouth .

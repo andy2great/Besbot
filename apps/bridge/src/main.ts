@@ -1,8 +1,9 @@
 import * as express from 'express';
-import * as mqtt from 'mqtt';
+import { MQTTClient } from '@besbot/helpers';
 
-import questionRoute from './app/question';
+import questionRoute from './app/routers/question';
 
+MQTTClient.getInstance().connect('mqtt://localhost:1883', 'beslogic', 'Beslogic#123456');
 const app = express();
 app.use(express.json());
 
@@ -15,25 +16,6 @@ const server = app.listen(port, () => {
 server.on('error', console.error);
 
 
-const client  = mqtt.connect('mqtt://localhost:1883', {
-  username: 'beslogic',
-  password: 'Beslogic#123456'
-})
-
-client.on('connect', function () {
-  client.subscribe('presence', function (err) {
-    if (!err) {
-      client.publish('presence', 'Hello mqtt')
-      client.publish('presence', 'Hello mqtt')
-      client.publish('presence', 'Hello mqtt')
-    }
-
-    console.log(err)
-  })
-})
-
-client.on('message', function (topic, message) {
-  // message is Buffer
-  console.log(topic, message.toString())
-  client.end()
+MQTTClient.getInstance().listen('presence', (message) => {
+  console.log(message)
 })
