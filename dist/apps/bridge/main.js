@@ -10,7 +10,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const helpers_1 = __webpack_require__("./libs/helpers/src/index.ts");
 const express = __webpack_require__("express");
 const router = express.Router();
-router.get('*', (req, res) => {
+router.get('/ask', (req, res) => {
     var _a, _b;
     helpers_1.MQTTClient.getInstance().notify('beslogic/mouth/say', (_b = (_a = req.query.text) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : 'Nothing found');
     res.send({ message: 'Welcome to bridge!' });
