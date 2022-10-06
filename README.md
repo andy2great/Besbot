@@ -2,12 +2,14 @@
 ## Description
 This project is an IoT initiative at Beslogic using their latest AI!
 
-![Untitled Diagram-Page-3 drawio](https://user-images.githubusercontent.com/22083907/193106178-de4e5378-4dff-4fd4-b332-aa8b14e620be.png)
+
 
 ## Goals
 To have an interactive device that listen, speaks and display it's emotion through lights, movements.
+![Besbox config drawio](https://user-images.githubusercontent.com/22083907/194387513-a4c23393-8def-45fa-96ed-5c4c75b2499e.png)
 
 ## Resources to run the project
+
 - Rasberry Pi 3b+
 
 ## Technologies
